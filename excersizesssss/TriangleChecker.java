@@ -12,18 +12,21 @@ class TriangleChecker{
   static boolean isScalene(int a, int b, int c){
       return a != b && b !=c; 
   }
+  
 
   public static void main(String[] args) {
       int a = Integer.parseInt(args[0]);
       int b = Integer.parseInt(args[1]);
       int c = Integer.parseInt(args[2]);
 
-      if (isScalene(a,b,c))
-	  System.out.println("Triangle is scalene (no sides equal).");
+      if(a < 1 || b < 1 || c < 1){ 
+        System.out.println("Side(s) cannot be less than 1");}
+      else if (isScalene(a,b,c))
+	    System.out.println("Triangle is scalene (no sides equal).");
       else if (isIsosceles(a,b,c))
-	  System.out.println("Triangle is isosceles (two sides equal).");
+	    System.out.println("Triangle is isosceles (two sides equal).");
       else if (isEquilateral(a,b,c))
-	  System.out.println("Triangle is equilateral (all sides equal).");
+	    System.out.println("Triangle is equilateral (all sides equal).");
       else System.out.println("Not a valid triangle.");
   }
 }
