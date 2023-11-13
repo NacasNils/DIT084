@@ -1,10 +1,10 @@
 import java.util.*;
 import java.util.function.IntBinaryOperator;
 
-public class Set {
+public class UpdatedSet {
   private ArrayList<Integer> a;
 
-  public Set() {
+  public UpdatedSet() {
     a = new ArrayList<Integer>();
   }
 
@@ -20,15 +20,15 @@ public class Set {
     for (int i = 0; i < a.size(); i++) {
       if (a.get(i) > x) {
         a.add(i, x);
-        break;
+        return;
       } else {
         if (a.get(i) == x) {
-          break;
+        return;
         }
       }
     }
     a.add(x);
-  }
+}
 
   public boolean member(int x) {
     for (int i = 0; i < a.size(); i++) {
@@ -43,7 +43,7 @@ public class Set {
     return false;
   }
 
-  public void intersect(Set s) {
+  public void intersect(UpdatedSet s) {
     for(int i = 0, j = 0 ; i < a.size() && j < s.a.size();) {
       if (a.get(i).equals(s.a.get(j))){
         i++;
@@ -53,7 +53,7 @@ public class Set {
           a.remove(i);
           i++;
         } else {
-          j++;
+          a.remove(i);
         }
       }
     }
@@ -74,3 +74,6 @@ public class Set {
     return true;
   }
 }
+
+    
+
