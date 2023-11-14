@@ -44,19 +44,16 @@ public class UpdatedSet {
   }
 
   public void intersect(UpdatedSet s) {
-    for(int i = 0, j = 0 ; i < a.size() && j < s.a.size();) {
-      if (a.get(i).equals(s.a.get(j))){
-        i++;
-        j++;
-      } else {
-        if (a.get(i) < s.a.get(j)) {
-          a.remove(i);
-          i++;
-        } else {
-          a.remove(i);
+    UpdatedSet b = new UpdatedSet(); 
+    for (int i = 0; i < a.toArray().length; i++) {
+      for (int j = 0; j < s.a.toArray().length; j++) {
+        if (a.get(i) == s.a.get(j)){
+          b.insert(a.get(i));
+          break;
         }
       }
     }
+    a = b.a;
   }
 
   // Try with:
