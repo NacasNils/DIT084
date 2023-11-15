@@ -62,7 +62,7 @@ public class UpdatedSet {
   public boolean distinctClosed(IntBinaryOperator f) {
     int vi,vj;
     for (int i = 0; i < a.size(); i++) {
-      for (int j = i; j < a.size(); j++) {
+      for (int j = 0; j < a.size(); j++) {
         vi = a.get(i);
         vj = a.get(j);
         if (!(member(f.applyAsInt(vi, vj)) || vi == vj)) return false;

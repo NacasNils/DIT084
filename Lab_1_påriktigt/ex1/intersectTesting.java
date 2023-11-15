@@ -95,4 +95,18 @@ public class intersectTesting {
     assertArrayEquals(new int[]{-5,7}, s0.toArray());
 
     }
+    @Test
+    public void suspiciousIntersect() {
+     UpdatedSet set = new UpdatedSet();
+     UpdatedSet setIntersect = new UpdatedSet();
+     set.insert(2);
+     set.insert(4);
+     setIntersect.insert(4);
+     setIntersect.insert(5);
+
+     set.intersect(setIntersect);
+     int[] expected = {4};
+
+     assertArrayEquals(expected, set.toArray());
+    }
 }
