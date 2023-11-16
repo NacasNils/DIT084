@@ -33,5 +33,16 @@ public class DistinctClosed {
         assertEquals(false, set.distinctClosed((a,b) -> a - b));
 
     }
-
+    @Test
+    public void TestThatRevealedBugInCode(){
+        UpdatedSet set = new UpdatedSet();
+        set.insert(0);
+        set.insert(-1);
+        // THIS TEST RETURNED TRUE BEFORE WE FIXED THE BUG, 
+        // assertEquals(true, set.distinctClosed((a,b) -> a - b));
+        assertEquals(false, set.distinctClosed((a,b) -> a - b));
+    }
 }
+/*
+ * 
+ */
