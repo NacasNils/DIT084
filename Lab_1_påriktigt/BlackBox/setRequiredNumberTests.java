@@ -10,6 +10,7 @@ public class setRequiredNumberTests {
         WorkSchedule ws = new WorkSchedule(24);
         ws.setRequiredNumber(0, 0, 0);
         assertEquals(0,ws.readSchedule(0).requiredNumber);
+        
     }
 
     @Test
@@ -36,7 +37,7 @@ public class setRequiredNumberTests {
     @Test 
     public void test_5(){                           // Here, as stated in the specification the schedule is unchanged. 
         WorkSchedule ws = new WorkSchedule(24);
-        ws.setRequiredNumber(3, 5, 4);
+        ws.setRequiredNumber(3, 5, 0);
         assertNotEquals(3,ws.readSchedule(5).requiredNumber);
         assertEquals(0,ws.readSchedule(5).requiredNumber);
     }
@@ -62,6 +63,18 @@ public class setRequiredNumberTests {
         assertEquals(3,ws.readSchedule(4).requiredNumber);
         assertEquals(3,ws.readSchedule(5).requiredNumber);
     }
+
+
+
+    /*
+    -- DOESENT WORK, Requested array size exceeds VM limit!
+    @Test
+    public void test_9(){
+        WorkSchedule ws = new WorkSchedule(Integer.MAX_VALUE);
+        ws.setRequiredNumber(3, Integer.MAX_VALUE-1, Integer.MAX_VALUE);
+        assertEquals(3,ws.Integer.MAX_VALUE-1.requiredNumber
+    }
+    */
 
 
     

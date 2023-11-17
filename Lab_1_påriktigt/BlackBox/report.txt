@@ -1,23 +1,113 @@
 a) setRequiredNumber
 requires:
   0 <= nemployee and  0 <= starttime and  0 <=endtime
+ensures:
+  if starttime > endtime then
+    the schedule is unchanged
+  otherwise
+      for each Hour between starttime and endtime (inclusive)
+          if the length of workingEmployees is greater than nemployee
+          then
+             requiredNumber is set to nemployee and workingEmployees
+             keeps a number of employees equal to nemployee, discarding
+             the rest
+          otherwise
+             requiredNumber is set to nemployee and workingEmployees is unchanged
+      and the rest of the schedule is unchanged
 
-so the input space interval:
+1. so the input space interval:
 
-nemployee: (0, Integer.MAX_VALUE)
+"nemployee" in {0,.., Integer.MAX_VALUE}
 
-starttime: (0, Integer.MAX_VALUE)
+"starttime" in {0,.., Integer.MAX_VALUE}
 
-endtime: (0, Integer.MAX_VALUE)  
+"endtime" {0,.., Integer.MAX_VALUE}  
 
+2. input space partitions:
 
+partition #1: nemployee = 0, starttime = 0, endtime = 0
+  test_setRequiredNumber_part1: input: "(0,0,0)", expected: "0"
 
-b)
+partition #2: nemployee > 0, starttime = 0, endtime = 0
+  test_setRequiredNumber_part2: input: "(1,0,0)", expected: "1"
 
+partition #3: nemployee = 0, starttime > 0, endtime = 0
+  test_setRequiredNumber_part3: input: "(0,3,0)", expected: "3"
 
+partition #4: nemployee = 0, starttime = 0, endtime > 0
+  test_setRequiredNumber_part4: input: "(0,0,5)", expected "5"
+
+partition #5: nemployee > 0, starttime > 0, endtime = 0
+  test_setRequiredNumber_part5: input: "(3,5,0)", expected "0"
+
+partition #6: nemployee > 0, starttime = 0, endtime > 0
+  test_setRequiredNumber_part6: input: "(5,0,6)", expected "5"
+
+partition #7: nemployee = 0, starttime > 0, endtime > 0
+  test_setRequiredNumber_part7: input: "(0,3,3)", expected "0"
+
+partition #8: nemployee > 0, starttime > 0, endtime > 0
+  test_setRequiredNumber_part8: input: "(3,4,5)", expected "3"
+
+Borde cases: 
+  test_setRequiredNumber_border1: input "(3, Integer.MAX_VALUE-1, Integer.MAX_VALUE)", expected "3"
 
 
 b) nextIncomplete
 requires:
   currenttime >= 0 and currenttime < size
+ensures:
+  if there is an hour in the interval currenttime to size - 1 such that
+     the length of workingEmployees is less that requiredNumber
+  then
+    returns the time of the hour closest to currenttime such that
+    the length of workingEmployees is less that requiredNumber
+  otherwise
+    returns -1
+  and in either case the schedule is unchanged
 
+1. so the input space interval:
+
+"currenttime" in {0,.., size}
+
+2. input space partitions:
+
+partition #1: currenttime > 0
+  test_setRequi_border1: input: "1", expected "5"
+  test_setRequi_border2: input: "2", expected "5"
+  test_setRequi_border3: input: "3", expected "5"
+  test_setRequi_border4: input: "4", expected "5"
+
+partition #2: currenttime = 0
+  test_setRequi_border5: input: "0", expected "9"
+
+Borde cases: 
+  test_next_border1: input "(3, Integer.MAX_VALUE-1, Integer.MAX_VALUE)", expected "3"
+
+
+
+c**) WorkSchedule
+1. so the input space interval:
+  size: [0,Integer.MAX_VALUE]
+
+requires: size >= 0
+
+ensurses: creates a schedule that contains the hours 0,1,2,...,size - 1, 
+which is initialized such that, for each hour,the number of needed 
+employees is zero and no employees are assigned to it.
+
+2. input space partitions: 
+// no tests needed for this as said by lab instructions!
+
+partition #1: size = 0
+
+partition #2: size > 0
+    
+    
+BUGS FOUND:
+  nextIncomplete does not return the "next" unfilled schedule spot, but always the last one.
+
+  if we have two incomplete spots, one at hour 9 and one at hour 11. and we run nextIncomplete(0),
+  it will return 11 not 9.
+
+   

@@ -1,0 +1,13 @@
+Thorugh testing we found the following bugs, 
+
+insert, would add the same element again if it already existed! 
+
+intersect, would not "intersect" if the first element in objects own arraylist was bigger than
+    the first element in the input set.
+
+DistictClosed, the nested forloop started at j=i, meaning that if we used a binary operator that is not
+    commutative we would miss some cases and therefore we could return true even though it was not true.
+
+WE COULD NOT SETUP BRANCH COVERAGE THROUGH VSCODE, WE HAVE NO IDEA HOW TO SET IT UP!!!
+    we tried with intellij but our structure that we had in vscode did not work there :( 
+        aka not a mavenProject that intellij can interperet.
