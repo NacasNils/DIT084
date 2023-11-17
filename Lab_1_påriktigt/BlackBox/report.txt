@@ -1,0 +1,23 @@
+a) setRequiredNumber
+requires:
+  0 <= nemployee and  0 <= starttime and  0 <=endtime
+
+so the input space interval:
+
+nemployee: (0, Integer.MAX_VALUE)
+
+starttime: (0, Integer.MAX_VALUE)
+
+endtime: (0, Integer.MAX_VALUE)  
+
+
+
+b)
+
+
+
+
+b) nextIncomplete
+requires:
+  currenttime >= 0 and currenttime < size
+
