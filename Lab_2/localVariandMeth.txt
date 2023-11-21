@@ -1,0 +1,24 @@
+LOCAL VARIABLE AND METHODS DATES
+
+Methods:
+
+main()
+daysInMonth()
+
+3.2 
+variable found in Main: 
+args (argument for main method) 
+
+someMonth  (our input)  
+someDay    (our input) 
+laterMonth (our input)
+laterDay   (our input)
+someDayInYear 
+laterDayInYear 
+aMonth 
+
+3.3 ( daysInMonth() ), location: line 13
+Variables:
+no local varaibles
+
+month (argument for method)

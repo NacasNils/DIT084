@@ -1,0 +1,13 @@
+input:  run Dates 1 1 1 1
+output: The difference in days between 1/1 and 1/1 is: -31
+expected: 0
+
+input: run Dates 1 1 12 31
+output: The difference in days between 1/1 and 12/31 is: 336
+expected: 365
+
+input: run Dates 8 6 4 2
+output: The difference in days between 8/6 and 4/2 is: -250
+expected: -126 (or 239)
+
+
