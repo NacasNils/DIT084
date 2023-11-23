@@ -5,6 +5,8 @@ to someDayInYear. and 0 to laterDayInYear. i belive the program then
 performs the subtraction laterDayInYear - someDayInYear == 0 - 31 = -31
 this is no correct.
 
-We dont know why we assignt 31 to someDayInYear
+We dont know why we assignt 31 to someDayInYear, but it might be because 
+a loop starts iterating at 0 instead of one therefore adding an extra month
+to the calendar.
 
 hey i found a buyg!
