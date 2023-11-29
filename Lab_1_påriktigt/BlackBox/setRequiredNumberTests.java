@@ -64,7 +64,36 @@ public class setRequiredNumberTests {
         assertEquals(3,ws.readSchedule(5).requiredNumber);
     }
 
+    @Test // FAILS BUG FOUND!
+    public void test_9(){
+        WorkSchedule ws = new WorkSchedule(24);
+        ws.setRequiredNumber(1,2,Integer.MAX_VALUE);
+        assertEquals(1,ws.readSchedule(3).requiredNumber);
+    }
 
+    @Test
+    public void test_10(){
+        WorkSchedule ws = new WorkSchedule(24);
+        ws.setRequiredNumber(1, 0, 3);
+        assertEquals(1, ws.readSchedule(1).requiredNumber);
+    }
+
+    @Test 
+    public void test_11(){
+        WorkSchedule ws = new WorkSchedule(24);
+        ws.setRequiredNumber(Integer.MAX_VALUE, 2, 3);
+        assertEquals(Integer.MAX_VALUE, ws.readSchedule(3).requiredNumber);
+    }
+    @Test 
+    public void test_12(){
+        WorkSchedule ws = new WorkSchedule(24);
+        ws.setRequiredNumber(2, 0, 23);
+        ws.addWorkingPeriod("Nils", 0, 23);
+        ws.addWorkingPeriod("Oscar", 0, 23);
+        assertEquals(2,ws.workingEmployees(0, 23).length);
+        ws.setRequiredNumber(1, 0, 23);
+        assertEquals(1,ws.workingEmployees(0, 23).length); 
+    }
 
     /*
     -- DOESENT WORK, Requested array size exceeds VM limit!

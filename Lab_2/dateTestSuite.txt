@@ -1,0 +1,11 @@
+input: run Dates 1 1 1 1 
+expected : 0
+output: the difference in days 1/1 and 1/1 is 0
+
+input: run Dates 8 6 4 2 
+expected = -126
+output: the difference in days 6/8 and 2/4 is -126 
+
+input: run 1 1 12 31 
+expected = 365 
+output: the difference in days 1/1 and 31/12

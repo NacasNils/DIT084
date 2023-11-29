@@ -110,4 +110,20 @@ BUGS FOUND:
   if we have two incomplete spots, one at hour 9 and one at hour 11. and we run nextIncomplete(0),
   it will return 11 not 9.
 
+  SECOND TRY (Below this line):
+
+  ALSO, we get an error when we try to initiate a workschedule with Integer.MAX_VALUE (we commented 
+  it out since our computers almost blows up whilst running tests.)
+
+  ALSO, Testcase_9 fails in setRequiredNumber even though we expect it to work. says index out of bounds!
+  The requirements doesnt say anything about a relation between end time and the size of the WorkSchedule.
+
+  ALSO, In Test_12 something unexpected happens. when we change the value of working employes after having 
+  (nemployes == workingEmployees.length). instead of setting (nemployes == workingEmployees.length) it sets 
+  (nemployes == 0). i think this is the bug you meant for us to find in the critique we got back!
+
+
+
+
+
    
