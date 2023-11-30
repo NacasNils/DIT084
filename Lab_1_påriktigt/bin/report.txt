@@ -116,7 +116,7 @@ BUGS FOUND:
   it out since our computers almost blows up whilst running tests.)
 
   ALSO, Testcase_9 fails in setRequiredNumber even though we expect it to work. says index out of bounds!
-  The requirements doesnt say anything about a relation between end time and the size of the WorkSchedule.
+  The requirements doesnt say anything about a relation between endtime and the size of the WorkSchedule.
 
   ALSO, In Test_12 something unexpected happens. when we change the value of working employes after having 
   (nemployes == workingEmployees.length). instead of setting (nemployes == workingEmployees.length) it sets 
