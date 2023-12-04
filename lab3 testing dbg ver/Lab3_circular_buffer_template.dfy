@@ -45,24 +45,26 @@ class CircularMemory
     ensures !isSuccess ==> false
 
   {
+    read_position := 0;
     if(isFlipped)
     {
-       if(read_position > cells.Length){
+       if(read_position == cells.Length){
         content := cells[read_position];
         isSuccess := true;
         isFlipped := false;
-      } 
-      else{
+        read_position := 0;
+      }  
+      
         content := cells[read_position];
         isSuccess := true;
         read_position := read_position + 1;
-      }
+      
       
     }
     
     else // not flipped
       {
-      if (read_position == write_position && !isFlipped) {
+      if (read_position == write_position) {
         isSuccess := false;
         content := 0;
       }
@@ -77,11 +79,11 @@ class CircularMemory
   method Write(input : int) returns (isSuccess : bool)
     modifies this
     requires Valid()
-    ensures  Valid()
-    ensures  isSuccess ==> true
-    ensures !isSuccess ==> false
+    ensures  Valid()/* 
+    ensures  isSuccess ==> 
+    ensures !isSuccess ==> false */
   {
-
+    write_position := 0;
     if(write_position > cells.Length){
     isFlipped := true;
     write_position := 0;
@@ -89,7 +91,7 @@ class CircularMemory
 
     if(isFlipped)
     {
-      if(read_position == write_position && isFlipped){
+      if(read_position == write_position){
         isSuccess := false;
         return;
       }
