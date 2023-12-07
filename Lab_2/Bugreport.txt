@@ -1,0 +1,41 @@
+3.4 Bugs found
+inbetween line 34 and 35 we have found a Bug.
+if we input the values 1 1 1 1 the program will assign the value 31
+to someDayInYear. and 0 to laterDayInYear. i belive the program then
+performs the subtraction laterDayInYear - someDayInYear == 0 - 31 = -31
+this is no correct.
+
+We dont know why we assignt 31 to someDayInYear, but it might be because 
+a loop starts iterating at 0 instead of one therefore adding an extra month
+to the calendar.
+
+
+
+
+
+
+
+LOCAL VARIABLE AND METHODS DATES
+
+Methods:
+
+main()
+daysInMonth()
+
+3.2 
+variable found in Main: 
+args (argument for main method) 
+
+someMonth  (our input)  
+someDay    (our input) 
+laterMonth (our input)
+laterDay   (our input)
+someDayInYear 
+laterDayInYear 
+aMonth 
+
+3.3 ( daysInMonth() ), location: line 13
+Variables:
+no local varaibles
+
+month (argument for method)
