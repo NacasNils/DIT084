@@ -1,0 +1,14 @@
+Answer Question 1b here:
+  Let S: wp(if (x > y) then a := x AND b := y 
+            else a := y AND b := x, a > b) =
+
+            (BY CONDITIONAL RULE)
+            (x > y) -> wp(a := x AND b := y,a > b) 
+            /\
+            (x <= y) -> wp(a := y AND b := x, a > b)
+
+            (BY ASSIGNMENT RULE)
+            (x > y) -> (x > y) 
+            /\ 
+            (x <= y) -> (y > x) 
+            (LAST STEP FAILS! since x = y but R says otherwise) 
