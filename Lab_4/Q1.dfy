@@ -12,7 +12,7 @@ in which we return a == b
 
 */
 method M(x : int, y : int) returns (a : int, b : int)
-  ensures a > b;
+  ensures a > b
 {
   if (x > y)
    {a:= x;
@@ -24,7 +24,7 @@ method M(x : int, y : int) returns (a : int, b : int)
 
 // fixed with post condition
 method M1(x : int, y : int) returns (a : int, b : int)
-  ensures a >= b;
+  ensures a >= b
 {
   if (x > y)
    {a:= x;
@@ -36,8 +36,8 @@ method M1(x : int, y : int) returns (a : int, b : int)
 
 // fixed with pre condition
 method M2(x : int, y : int) returns (a : int, b : int)
-  requires x != y;
-  ensures a > b;
+  requires x != y
+  ensures a > b
 {
   if (x > y)
    {a:= x;
@@ -48,7 +48,7 @@ method M2(x : int, y : int) returns (a : int, b : int)
 }
 // this fix is weird couldnt come up with anything better
 method M3(x : int, y : int) returns (a : int, b : int)
-  ensures a > b;
+  ensures a > b
 {
   if (x > y)
    {a:= x;
