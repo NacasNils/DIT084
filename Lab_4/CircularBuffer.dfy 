@@ -164,7 +164,64 @@ class CircularMemory
     }
     
   }
+  // Question 3 for Lab 4
+  method DoubleCapacity()
+    modifies this, this.cells
+    requires Valid()
+    ensures Valid()
+    ensures cells.Length == 2 * old(cells.Length)
+    ensures read_position == old(read_position)
+    ensures write_position == old(write_position)
+    ensures forall j : int :: 0 <= j < old(cells.Length) ==> cells[j] == old(cells[j])
+    ensures forall j : int :: old(cells.Length) <= j < cells.Length ==> cells[j] == 0
+  {
+    // one or more loops to double the capacity of cells
+    // the most important part is the loop invariants!
+
+    var newCells : array<int>;
+    var i : int;
+
+// new cells with double size
+    newCells := new int[cells.Length * 2];
+
+// copy old array to new array
+    i := 0;
+    while (i < cells.Length)
+          modifies newCells
+        // Checks the difference between i and cells.Length so that the while loop is correct
+        decreases cells.Length - i
+        // Makes sure that the index is never out of bounds
+        invariant 0 <= i <= cells.Length
+        // Checks that the array has been copied sucessfully
+          invariant forall j :: 0 <= j < i ==> old(cells[j]) == newCells[j]
+    {
+      newCells[i] := cells[i];
+      i := i + 1;
+    }
+   cap := 2*cap;
 
 
-  }
+// fill the rest with 0
+    i := cap / 2;
+    while (i < newCells.Length)
+      modifies newCells
+      // Makes sure that the index is never out of bounds
+      invariant cells.Length <= i <= newCells.Length
+      // Checks that the array has been copied sucessfully
+      invariant forall j :: 0 <= j < cells.Length ==> newCells[j] == old(cells[j])
+      // Checks that the rest of the array is filled with 0
+      invariant forall j :: cells.Length <= j < i ==> newCells[j] == 0
+      // Checks the difference between i and newcells.Length so that the while loop is correct
+      decreases newCells.Length - i
+
+    {
+      newCells[i] := 0;
+      i := i + 1;
+    }
+     cells := newCells;
+
+  } 
+}
+
+
  

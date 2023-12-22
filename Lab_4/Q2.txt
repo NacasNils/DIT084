@@ -1,0 +1,82 @@
+
+/* 
+Q2.b) 
+Proof for ComputeFact:
+
+1. before loop: 
+n > 0 -> wp(res := 1, i := 2, (i <= n + 1) /\ (res == fact(i-1)))
+(SEQUENTIAL RULE)
+n > 0 -> wp(res := 1, wp(i := 2,(i <= n + 1) /\ (res == fact(i-1)))
+(ASSIGNTMENT RULE)
+n > 0 -> wp(res := 1, (2 <= n + 1) /\ (res == fact(1))
+(ASSIGNTMENT RULE) 
+n > 0 -> 2 <= n+1 /\ 1 == fact(1)              --(per mathematical def: fact(1) = 1)
+(simplifying righthand side)
+n > 0 -> 1 <= n /\ 1 == fact(1)
+trivially true when working with natural numbers: (n > 0 -> (1 <= n)) 
+
+
+2. Loop iteration:
+(i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) 
+      ->
+         wp(res := res * i; i := i +1 ,(i <= n + 1) /\ (res == fact(i-1))
+(SEQUENTIAL RULE)
+(i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) 
+      ->
+         wp(res := res * i, wp(i := i + 1,(i <= n + 1) /\ (res == fact(i-1)))
+(ASSIGNMENT RULE)
+(i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) 
+      ->
+         wp(res := res * i, (i + 1 <= n + 1) /\ (res == fact(i))
+(ASSIGNMENT RULE)
+(i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) 
+      ->
+         (i + 1 <= n + 1) /\ (res * i  == fact(i))
+(simplifying the right hand side)
+(i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) 
+      -> 
+         (i <= n) /\ (res*i == fact(i)) 
+         the first statement is trivially true since ((i <= n) == (i <= n))
+         the second statement is also true because if we increase the value of i by 1
+            then we will iterate through the while loop again causing us to multiply res by i one extra time.
+            (so fact(i-1) == res  /\ fact(i) == res * i)
+
+3. After loop:
+  we do not have anything here to evaluate so we wont...
+
+
+---------------------------------------------------------------------------------------
+Q2.c)
+4. Bounded by 0: I ∧ B → V > 0
+  (i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n) -> n - i + 1 > 0
+  true, since n must be larger than or equal to i, meaning that even if ther are
+  equal to one another the righthand side expression will be true since 1>0.
+
+5. Decreases at each iteration: I ∧ B → wp(Vold := V; S, V < Vold)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+        wp(Vold :=  n - i + 1;res := res * i; i := i + 1; , n - i + 1 < Vold)
+(SEQUENTIAL RULE)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+        wp(Vold :=  n - i + 1;res := res * i; , wp(i := i + 1, n - i + 1 < Vold))
+(SEQUENTIAL RULE)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+        wp(Vold :=  n - i + 1, wp(res := res * i; , wp(i := i + 1, n - i + 1 < Vold)))
+(ASSIGNMENT RULE) (i := i + 1)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+        wp(Vold :=  n - i + 1, wp(res := res * i; , n - i < Vold))
+(ASSIGNMENT RULE) (res := res * i)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+        wp(Vold :=  n - i + 1, n - i < Vold))
+(ASSIGNMENT RULE) (Vold = n - i + 1)
+i <= n + 1) /\ (res == fact(i-1)) /\ (i <= n)
+     -> 
+         n - i < n - i + 1
+(trivially true, since right hans side will always be 1 bigger than lefthand side)
+*/
+
+ 
